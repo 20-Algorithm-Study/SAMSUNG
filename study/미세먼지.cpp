@@ -11,7 +11,7 @@ struct info {
 int R, C, T;
 int room[55][55];
 vector<info>V;
-info AirUp, AirDown;
+info AirUp, AirDown; //공기청정기 위치
 
 void Input();
 void spread();
@@ -19,7 +19,8 @@ void wind();
 void reset_vector();
 void Rotate_Up();
 void Rotate_Down();
-void Print();
+
+//void Print();
 
 int main() {
 
@@ -32,13 +33,13 @@ int main() {
 
 	for (int q = 1; q <= T; q++) {
 		
-		spread();
-		Print();
+		spread();   //확산
+		//Print();
 
-		wind();
-		Print();
+		wind();     //순환
+		//Print();
 
-		reset_vector();
+		reset_vector(); //미세먼지 정보리셋
 	}
 
 	int total = 0;
