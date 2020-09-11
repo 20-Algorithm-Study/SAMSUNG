@@ -1,7 +1,7 @@
 # SAMSUNG
 Samsung DS Coding Test  
 
-#삼성 DS Study ver 20200911
+# 삼성 DS Study ver.20200911
 
 1. 모임 시간
 온라인 : 화요일 6시 
