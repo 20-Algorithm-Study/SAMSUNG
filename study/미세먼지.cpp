@@ -188,9 +188,9 @@ void Rotate_Down() {
 
 	for (int i = 1; i < C; i++) {
 		Q.push(room[AirDown.x][i]);
-		room[AirUp.x][i] = 0;
+		room[AirDown.x][i] = 0;
 	}
-	for (int i = AirUp.x + 1; i < R; i++) {
+	for (int i = AirDown.x + 1; i < R; i++) {
 		Q.push(room[i][C - 1]);
 		room[i][C - 1] = 0;
 	}
@@ -211,7 +211,7 @@ void Rotate_Down() {
 			Q.pop();
 		}
 	}
-	for (int i = AirUp.x + 1; i < R; i++) {
+	for (int i = AirDown.x + 1; i < R; i++) {
 		if (!Q.empty()) {
 			room[i][C - 1] = Q.front();
 			Q.pop();
