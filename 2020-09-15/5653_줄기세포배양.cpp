@@ -62,16 +62,6 @@ void solve()
 		swap(active, tmpA);
 		tmpI.clear();
 		tmpA.clear();
-
-#ifdef DEBUG
-		cout << endl;
-		for (int i = 490; i < 520; i++)
-		{
-			for (int j = 490; j < 520; j++)
-				cout << grid[i][j] << " ";
-			cout << endl;
-		}
-#endif
 	}
 }
 
