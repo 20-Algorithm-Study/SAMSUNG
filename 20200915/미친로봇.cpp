@@ -27,7 +27,7 @@ int main() {
 	DFS(15, 15, N, 1.0);
 
 	cout << fixed;
-	cout.precision(10);
+	cout.precision(10); //오차의 허용범위가 10^-9이므로 소수점 10까지 출력
 	cout << Ans;
 
 	return 0;
@@ -49,7 +49,8 @@ void DFS(int x, int y, int total, double per) {
 
 		if (map[nx][ny] == true)continue;
 		
-		DFS(nx, ny, total--, per * percent[i]);	
+		//여기서 --total 하면 시간초과고, total-1 하면 왜 정답...? 
+		DFS(nx, ny, total-1, per * percent[i]);	
 	}
 	 
 	map[x][y] = false;
