@@ -64,21 +64,10 @@ void IInput() {
 
 bool Check(int cell[15][25]) {
 
-	//int all = 0;
-	
-	/*
-	cout << "check \n";
-	for (int i = 0; i < D; i++) {
-		for (int j = 0; j < W; j++) {
-			cout << cell[i][j] << " ";
-		}
-		cout << "\n";
-	}*/
-
 	for (int i = 0; i < W; i++) {
 		int a = 0; int b = 0;
-		int before = cell[0][i];
-		bool stop = false;
+		int before = cell[0][i]; //이전에 어떤약품이었는지 표시해서, 현재 약품과 다르면 이전약품에서 셌던거 초기화.
+		bool stop = false; //한줄마다 K조건 만족하는지 확인
 
 		for (int j = 0; j < D; j++) {
 			if (cell[j][i] == 0) {
@@ -87,7 +76,7 @@ bool Check(int cell[15][25]) {
 					before = cell[j][i];
 				}
 				a++;
-				if (a >= K) {
+				if (a >= K) { // K 조건 만족
 					stop = true;
 					break;
 				}
@@ -99,17 +88,17 @@ bool Check(int cell[15][25]) {
 					before = cell[j][i];
 				}
 				b++;
-				if (b >= K) {
+				if (b >= K) { // K 조건 만족
 					stop = true;
 					break;
 				}
 			}
 		}
 
-		if (!stop) return false;
+		if (!stop) return false; // K조건 안되면 false로 걸러서 뒷부분 탐색안하고 시간줄이기
 	}
 	
-	return true;
+	return true; 
 }
 
 int Comb() {
@@ -148,7 +137,6 @@ int Comb() {
 			V.push_back(1);
 		}
 		
-
 		do {
 
 			vector<int>Num;
@@ -171,7 +159,7 @@ int Comb() {
 	}
 
 
-	return K;
+	return K; //약품 K개 넣으면 무조건 조건만족시킬 수 있음
 }
 
 
@@ -183,18 +171,15 @@ void put_medicine(vector<int>v,int idx, int map[15][25]) {
 		return;
 	}
 
-	//cout << 1 << "\n";
-	for (int i = 0; i < W; i++) {
+	for (int i = 0; i < W; i++) { //A약품 넣기
 		map[v[idx]][i] = 0;
 	}
 	put_medicine(v, idx + 1, map);
 
 
-	//cout << 2 << "\n";
-	for (int i = 0; i < W; i++) {
+	for (int i = 0; i < W; i++) { //B약품 넣기
 		map[v[idx]][i] = 1;
 	}
 	put_medicine(v, idx + 1, map);
-
 }
 
