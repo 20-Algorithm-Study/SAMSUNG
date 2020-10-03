@@ -10,7 +10,7 @@ int MMin = 987654321;
 bool Stop = false;
 
 void IInput();
-void Sticker(int x);
+void Sticker();
 bool Checkingsize(int x, int y, int cnt);
 void patch_paper(int x, int y, int cnt, bool now);
 void Print();
@@ -21,7 +21,7 @@ int main() {
 	cin.tie(0);
 
 	IInput(); //입력
-	Sticker(0); //스티커
+	Sticker(); //스티커
 
 	if (MMin == 987654321) cout << -1;
 	else
@@ -41,10 +41,10 @@ void IInput() {
 	}
 }
 
-void Sticker(int x) {
-	
+void Sticker() {
 
-	if (All == 0 || (remainPaper[1] == 0 && remainPaper[2] == 0 && remainPaper[3] == 0 && remainPaper[4] == 0 && remainPaper[5] == 0))
+
+	if (All == 0)
 	{
 		int mmin = 25;
 		for (int i = 1; i <= 5; i++) {
@@ -54,29 +54,34 @@ void Sticker(int x) {
 		return;
 	}
 
-	for (int i = x; i < 10; i++) {
+	int r, c = 0; bool flag = false;
+	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 10; j++) {
-			
+
 			if (Paper[i][j] == 1 && !check[i][j]) { //맞는크기 색종이구하기
-			
-				for (int k = 1; k <= 5 ; k++) { //색종이 크기 5가지
-					
-					if (remainPaper[k] > 0 && Checkingsize(i, j, k)) { //색종이가 남아있거나, 붙일수 있으면
-						
-						remainPaper[k]--;
-						patch_paper(i, j, k, true);
-						//Print();
-
-						Sticker(i);
-
-						remainPaper[k]++;
-						patch_paper(i, j, k, false);
-					}
-					else return; //색종이는 1~붙이니까 작은사이즈 못붙이면 큰사이즈도 못붙임.
-					
-				}
+				r = i;
+				c = j;
+				flag = true;
+				break;
 			}
 		}
+		if (flag)break;
+	}
+
+	for (int k = 1; k <= 5; k++) { //색종이 크기 5가지
+
+		if (remainPaper[k] > 0 && Checkingsize(r, c, k)) { //색종이가 남아있거나, 붙일수 있으면
+
+			remainPaper[k]--;
+			patch_paper(r, c, k, true);
+			//Print();
+
+			Sticker();
+
+			remainPaper[k]++;
+			patch_paper(r, c, k, false);
+		}
+		//else return; //색종이는 1~붙이니까 작은사이즈 못붙이면 큰사이즈도 못붙임.
 	}
 }
 
@@ -84,7 +89,7 @@ bool Checkingsize(int x, int y, int cnt)
 {
 	for (int i = x; i < x + cnt; i++) {
 		for (int j = y; j < y + cnt; j++) {
-			if (check[i][j] || Paper[i][j] == 0|| i>=10 || j>=10)return false;
+			if (check[i][j] || Paper[i][j] == 0 || i >= 10 || j >= 10)return false;
 		}
 	}
 	return true;
@@ -102,7 +107,7 @@ void patch_paper(int x, int y, int cnt, bool now) {
 		}
 		//Print();
 	}
-	else{
+	else {
 		for (int i = x; i < x + cnt; i++) {
 			for (int j = y; j < y + cnt; j++) {
 				check[i][j] = now;
@@ -111,7 +116,7 @@ void patch_paper(int x, int y, int cnt, bool now) {
 		}
 	}
 
-  
+
 }
 
 void Print() {
