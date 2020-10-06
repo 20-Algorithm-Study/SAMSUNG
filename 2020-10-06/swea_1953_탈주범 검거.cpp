@@ -88,6 +88,6 @@ int main()
         solve();
 
         //output
-        cout << "#" << tc << " " << answer << endl;
+        cout << "#" << tc << " " << answer << endl; 
     }
 }
