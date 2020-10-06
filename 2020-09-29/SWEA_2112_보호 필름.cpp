@@ -79,7 +79,7 @@ bool injection(int now, int r) //약물 투입(현재 투입한 행, 행의 개�
 
 bool comb(int cnt, int r) //D C r : D개의 행(막)에서 r개의 행(막)을 고른다
 {
-    if (pick.size() == r) //어떤 행(막)에 투입할지 다 골랐다
+    if (pick.size() == r) //어떤 행(막)에 투입할지 다 골랐다 
     {
         if (injection(0, r)) // 투입
             return true;
