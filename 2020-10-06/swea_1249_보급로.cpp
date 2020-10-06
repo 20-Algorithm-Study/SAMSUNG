@@ -31,7 +31,7 @@ void solve()
     while (!q.empty())
     {
         r = q.front().r;
-        c = q.front().c;
+        c = q.front().c; 
         q.pop();
 
         for (int i = 0; i < 4; i++)
